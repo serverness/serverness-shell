@@ -1,0 +1,1246 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Ness API",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/api-keys": {
+      "get": {
+        "operationId": "api_key_list",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Array_of_ApiKey",
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ApiKey"
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/ConsoleError"
+          },
+          "5XX": {
+            "$ref": "#/components/responses/ConsoleError"
+          }
+        }
+      },
+      "post": {
+        "operationId": "api_key_create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ApiKeyCreateParams"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "successful creation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreatedApiKey"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/ConsoleError"
+          },
+          "5XX": {
+            "$ref": "#/components/responses/ConsoleError"
+          }
+        }
+      }
+    },
+    "/api-keys/{id}": {
+      "get": {
+        "operationId": "api_key_describe",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiKey"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/ConsoleError"
+          },
+          "5XX": {
+            "$ref": "#/components/responses/ConsoleError"
+          }
+        }
+      },
+      "delete": {
+        "operationId": "api_key_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "successful deletion"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/ConsoleError"
+          },
+          "5XX": {
+            "$ref": "#/components/responses/ConsoleError"
+          }
+        }
+      }
+    },
+    "/installs": {
+      "get": {
+        "operationId": "install_list",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Array_of_Install",
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Install"
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/ConsoleError"
+          },
+          "5XX": {
+            "$ref": "#/components/responses/ConsoleError"
+          }
+        }
+      },
+      "post": {
+        "operationId": "install_create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InstallCreateParams"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "successful creation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Install"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/ConsoleError"
+          },
+          "5XX": {
+            "$ref": "#/components/responses/ConsoleError"
+          }
+        }
+      }
+    },
+    "/installs/{id}": {
+      "get": {
+        "operationId": "install_describe",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Install"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/ConsoleError"
+          },
+          "5XX": {
+            "$ref": "#/components/responses/ConsoleError"
+          }
+        }
+      },
+      "delete": {
+        "operationId": "install_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "successful deletion"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/ConsoleError"
+          },
+          "5XX": {
+            "$ref": "#/components/responses/ConsoleError"
+          }
+        }
+      }
+    },
+    "/instances": {
+      "get": {
+        "operationId": "instance_list",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "limit",
+            "description": "Maximum number of items returned by a single call",
+            "schema": {
+              "nullable": true,
+              "type": "integer",
+              "format": "uint32",
+              "minimum": 1
+            }
+          },
+          {
+            "in": "query",
+            "name": "page_token",
+            "description": "Token returned by previous call to retrieve the subsequent page",
+            "schema": {
+              "nullable": true,
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "schema": {
+              "$ref": "#/components/schemas/SortMode"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstanceListItemResultsPage"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/ConsoleError"
+          },
+          "5XX": {
+            "$ref": "#/components/responses/ConsoleError"
+          }
+        },
+        "x-dropshot-pagination": {
+          "required": []
+        }
+      },
+      "post": {
+        "operationId": "instance_create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InstanceCreateParams"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "successful creation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreatedInstance"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/ConsoleError"
+          },
+          "5XX": {
+            "$ref": "#/components/responses/ConsoleError"
+          }
+        }
+      }
+    },
+    "/instances/{id}": {
+      "get": {
+        "operationId": "instance_describe",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstanceDescription"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/ConsoleError"
+          },
+          "5XX": {
+            "$ref": "#/components/responses/ConsoleError"
+          }
+        }
+      },
+      "delete": {
+        "operationId": "instance_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "successful deletion"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/ConsoleError"
+          },
+          "5XX": {
+            "$ref": "#/components/responses/ConsoleError"
+          }
+        }
+      }
+    },
+    "/pools": {
+      "get": {
+        "operationId": "pool_list",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Array_of_PoolListItem",
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PoolListItem"
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/ConsoleError"
+          },
+          "5XX": {
+            "$ref": "#/components/responses/ConsoleError"
+          }
+        }
+      }
+    },
+    "/sessions": {
+      "get": {
+        "operationId": "session_list",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Array_of_AccountSession",
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AccountSession"
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/ConsoleError"
+          },
+          "5XX": {
+            "$ref": "#/components/responses/ConsoleError"
+          }
+        }
+      }
+    },
+    "/sessions/{id}": {
+      "delete": {
+        "operationId": "session_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "successful deletion"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/ConsoleError"
+          },
+          "5XX": {
+            "$ref": "#/components/responses/ConsoleError"
+          }
+        }
+      }
+    },
+    "/ssh-keys": {
+      "get": {
+        "operationId": "ssh_key_list",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Array_of_SshKey",
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SshKey"
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/ConsoleError"
+          },
+          "5XX": {
+            "$ref": "#/components/responses/ConsoleError"
+          }
+        }
+      },
+      "post": {
+        "operationId": "ssh_key_create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SshKeyCreateParams"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "successful creation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreatedSshKey"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/ConsoleError"
+          },
+          "5XX": {
+            "$ref": "#/components/responses/ConsoleError"
+          }
+        }
+      }
+    },
+    "/ssh-keys/{id}": {
+      "get": {
+        "operationId": "ssh_key_describe",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SshKey"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/ConsoleError"
+          },
+          "5XX": {
+            "$ref": "#/components/responses/ConsoleError"
+          }
+        }
+      },
+      "put": {
+        "operationId": "ssh_key_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SshKeyUpdateParams"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SshKey"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/ConsoleError"
+          },
+          "5XX": {
+            "$ref": "#/components/responses/ConsoleError"
+          }
+        }
+      },
+      "delete": {
+        "operationId": "ssh_key_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "successful deletion"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/ConsoleError"
+          },
+          "5XX": {
+            "$ref": "#/components/responses/ConsoleError"
+          }
+        }
+      }
+    },
+    "/users": {
+      "get": {
+        "operationId": "user_list",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "Array_of_UserListItem",
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserListItem"
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/ConsoleError"
+          },
+          "5XX": {
+            "$ref": "#/components/responses/ConsoleError"
+          }
+        }
+      },
+      "post": {
+        "operationId": "user_create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserCreateParams"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "successful creation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreatedUser"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/ConsoleError"
+          },
+          "5XX": {
+            "$ref": "#/components/responses/ConsoleError"
+          }
+        }
+      }
+    },
+    "/users/{id}": {
+      "get": {
+        "operationId": "user_describe",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserDescription"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/ConsoleError"
+          },
+          "5XX": {
+            "$ref": "#/components/responses/ConsoleError"
+          }
+        }
+      },
+      "put": {
+        "operationId": "user_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserUpdateParams"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdatedUser"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/ConsoleError"
+          },
+          "5XX": {
+            "$ref": "#/components/responses/ConsoleError"
+          }
+        }
+      },
+      "delete": {
+        "operationId": "user_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "successful deletion"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/ConsoleError"
+          },
+          "5XX": {
+            "$ref": "#/components/responses/ConsoleError"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ApiKey": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "label": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "created_at",
+          "id",
+          "label"
+        ]
+      },
+      "ConsoleError": {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "DatabaseError": {
+                "type": "object"
+              }
+            },
+            "required": [
+              "DatabaseError"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "NessError": {
+                "type": "object"
+              }
+            },
+            "required": [
+              "NessError"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "Other": {
+                "type": "object",
+                "properties": {
+                  "message": {
+                    "type": "string"
+                  },
+                  "error_code": {
+                    "nullable": true,
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "message"
+                ]
+              }
+            },
+            "required": [
+              "Other"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      },
+      "ApiKeyCreateParams": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "label"
+        ]
+      },
+      "CreatedApiKey": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "label": {
+            "type": "string"
+          },
+          "secret": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "label",
+          "secret"
+        ]
+      },
+      "Install": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "InstallCreateParams": {
+        "type": "object"
+      },
+      "InstanceListItemResultsPage": {
+        "description": "A single page of results",
+        "type": "object",
+        "properties": {
+          "next_page": {
+            "nullable": true,
+            "description": "token used to fetch the next page of results (if any)",
+            "type": "string"
+          },
+          "items": {
+            "description": "list of items on this page of results",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InstanceListItem"
+            }
+          }
+        },
+        "required": [
+          "items"
+        ]
+      },
+      "InstanceListItem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "pool": {
+            "type": "string"
+          },
+          "hostname": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "modified_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "created_at",
+          "hostname",
+          "id",
+          "modified_at",
+          "pool",
+          "status"
+        ]
+      },
+      "InstanceCreateParams": {
+        "type": "object",
+        "properties": {
+          "pool": {
+            "type": "string"
+          },
+          "hostname": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "hostname",
+          "pool"
+        ]
+      },
+      "CreatedInstance": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "pool": {
+            "type": "string"
+          },
+          "hostname": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "hostname",
+          "id",
+          "pool",
+          "status"
+        ]
+      },
+      "InstanceDescription": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "pool": {
+            "type": "string"
+          },
+          "hostname": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "modified_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "created_at",
+          "hostname",
+          "id",
+          "modified_at",
+          "pool",
+          "status"
+        ]
+      },
+      "PoolListItem": {
+        "type": "object",
+        "properties": {
+          "pool": {
+            "type": "string"
+          },
+          "available": {
+            "type": "string",
+            "pattern": "^-?[0-9]+(\\.[0-9]+)?$"
+          }
+        },
+        "required": [
+          "available",
+          "pool"
+        ]
+      },
+      "AccountSession": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "account_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "account_user_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "secret": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "account_id",
+          "account_user_id",
+          "id",
+          "secret"
+        ]
+      },
+      "SshKey": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "label": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "created_at",
+          "id",
+          "label"
+        ]
+      },
+      "SshKeyCreateParams": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string"
+          },
+          "public_key": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "label",
+          "public_key"
+        ]
+      },
+      "CreatedSshKey": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "label": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "label"
+        ]
+      },
+      "SshKeyUpdateParams": {
+        "type": "object"
+      },
+      "UserListItem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "label": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "label"
+        ]
+      },
+      "UserCreateParams": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string"
+          },
+          "public_key": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "label",
+          "public_key"
+        ]
+      },
+      "CreatedUser": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "label": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "label"
+        ]
+      },
+      "UserDescription": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "label": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "modified_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "created_at",
+          "id",
+          "label",
+          "modified_at"
+        ]
+      },
+      "UserUpdateParams": {
+        "type": "object"
+      },
+      "UpdatedUser": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "label": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "label"
+        ]
+      },
+      "SortMode": {
+        "type": "string",
+        "enum": [
+          "by-id-ascending",
+          "by-id-descending"
+        ]
+      }
+    },
+    "responses": {
+      "ConsoleError": {
+        "description": "ConsoleError",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ConsoleError"
+            }
+          }
+        }
+      }
+    }
+  }
+}

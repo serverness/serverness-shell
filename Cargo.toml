@@ -1,0 +1,56 @@
+[workspace]
+members = ["shell", "xtask"]
+resolver = "2"
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+authors = ["Art Semyonov"]
+
+[workspace.dependencies]
+futures = "0.3.31"
+ctrlc = "3.4.5"
+indoc = "2.0.5"
+tokio = { version = "1.43.0", features = ["full"] }
+anyhow = "1.0.95"
+serde = "1.0.217"
+serde_json = "1.0.138"
+bigdecimal = { version = "0.4.7", features = ["serde"] }
+chrono = { version = "0.4.39", features = ["serde"] }
+clap = { version = "4.5.30", features = [
+  "derive",
+  "string",
+  "env",
+  "wrap_help",
+] }
+schemars = { version = "0.8.21", features = [
+  "bigdecimal04",
+  "chrono",
+  "derive",
+  "uuid",
+  "uuid1",
+] }
+uuid = { version = "1.13.2", features = ["v7", "serde"] }
+serverness = { git = "https://github.com/serverness/serverness-rs.git", features = [
+  "nu",
+] }
+nu-protocol = { git = "https://github.com/serverness/nushell.git", branch = "uuid" }
+nu-cli = { git = "https://github.com/serverness/nushell.git", branch = "uuid" }
+nu-cmd-base = { git = "https://github.com/serverness/nushell.git", branch = "uuid" }
+nu-cmd-extra = { git = "https://github.com/serverness/nushell.git", branch = "uuid" }
+nu-cmd-lang = { git = "https://github.com/serverness/nushell.git", branch = "uuid" }
+nu-cmd-plugin = { git = "https://github.com/serverness/nushell.git", branch = "uuid" }
+nu-command = { git = "https://github.com/serverness/nushell.git", branch = "uuid" }
+nu-engine = { git = "https://github.com/serverness/nushell.git", branch = "uuid" }
+nu-explore = { git = "https://github.com/serverness/nushell.git", branch = "uuid" }
+nu-parser = { git = "https://github.com/serverness/nushell.git", branch = "uuid" }
+nu-path = { git = "https://github.com/serverness/nushell.git", branch = "uuid" }
+nu-plugin = { git = "https://github.com/serverness/nushell.git", branch = "uuid" }
+nu-plugin-engine = { git = "https://github.com/serverness/nushell.git", branch = "uuid" }
+nu-system = { git = "https://github.com/serverness/nushell.git", branch = "uuid" }
+nu-utils = { git = "https://github.com/serverness/nushell.git", branch = "uuid" }
+indexmap = "2.8.0"
+newline-converter = "0.3.0"
+progenitor = { git = "https://github.com/serverness/progenitor.git", branch = "nushell", default-features = false }
+regex = "1.11.1"
+rustfmt-wrapper = "0.2.1"
