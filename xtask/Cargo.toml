@@ -6,7 +6,7 @@ publish = false
 
 [dependencies]
 clap.workspace = true
-indexmap = "2.8.0"
+indexmap = { workspace = true }
 newline-converter.workspace = true
 progenitor = { workspace = true, default-features = false }
 regex.workspace = true

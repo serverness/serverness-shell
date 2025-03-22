@@ -9,12 +9,9 @@ pub struct State {
 }
 
 impl State {
-    pub fn new() -> Self {
+    pub fn new(address: String, secret: String) -> Self {
         let client_config = ClientConfig::default()
-            .with_auth(
-                "http://127.0.0.1:8000",
-                "ness-session-ee3015132966647024de61c46821f66e3de48ae5",
-            )
+            .with_auth(address, secret)
             .with_insecure(true);
 
         let client = serverness::Client::new_authenticated_config(&client_config).unwrap();
@@ -28,8 +25,8 @@ impl State {
     }
 }
 
-pub fn create_state() -> Arc<Mutex<State>> {
-    let state = State::new();
+pub fn create_state(address: String, secret: String) -> Arc<Mutex<State>> {
+    let state = State::new(address, secret);
 
     Arc::new(Mutex::new(state))
 }

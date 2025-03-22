@@ -1752,7 +1752,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "fc2f4eb4bc735547cfed7c0a4922cbd04a4655978c09b54f1f7b228750664c34"
 dependencies = [
  "cfg-if",
- "windows-targets 0.52.6",
+ "windows-targets 0.48.5",
 ]
 
 [[package]]
@@ -3046,7 +3046,7 @@ dependencies = [
 [[package]]
 name = "progenitor"
 version = "0.9.1"
-source = "git+https://github.com/serverness/progenitor.git?branch=nushell#421dc6d76fefe11ee88e043032f428e3e98a4ae5"
+source = "git+https://github.com/serverness/progenitor.git?branch=nushell#5834084faa2902ee9c1fb41f8d4c88496e40d5b2"
 dependencies = [
  "progenitor-impl",
 ]
@@ -3069,7 +3069,7 @@ dependencies = [
 [[package]]
 name = "progenitor-impl"
 version = "0.9.1"
-source = "git+https://github.com/serverness/progenitor.git?branch=nushell#421dc6d76fefe11ee88e043032f428e3e98a4ae5"
+source = "git+https://github.com/serverness/progenitor.git?branch=nushell#5834084faa2902ee9c1fb41f8d4c88496e40d5b2"
 dependencies = [
  "heck",
  "http",
@@ -3769,38 +3769,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "serverness-shell"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "chrono",
- "ctrlc",
- "futures",
- "indoc",
- "nu-cli",
- "nu-cmd-base",
- "nu-cmd-extra",
- "nu-cmd-lang",
- "nu-cmd-plugin",
- "nu-command",
- "nu-engine",
- "nu-explore",
- "nu-parser",
- "nu-path",
- "nu-plugin",
- "nu-plugin-engine",
- "nu-protocol",
- "nu-system",
- "nu-utils",
- "schemars",
- "serde",
- "serde_json",
- "serverness",
- "tokio",
- "uuid 1.16.0",
-]
-
-[[package]]
 name = "sha2"
 version = "0.10.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3820,6 +3788,41 @@ dependencies = [
  "const_format",
  "is_debug",
  "time",
+]
+
+[[package]]
+name = "shell"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "chrono",
+ "clap",
+ "ctrlc",
+ "futures",
+ "indoc",
+ "nix",
+ "nu-cli",
+ "nu-cmd-base",
+ "nu-cmd-extra",
+ "nu-cmd-lang",
+ "nu-cmd-plugin",
+ "nu-command",
+ "nu-engine",
+ "nu-explore",
+ "nu-parser",
+ "nu-path",
+ "nu-plugin",
+ "nu-plugin-engine",
+ "nu-protocol",
+ "nu-system",
+ "nu-utils",
+ "schemars",
+ "serde",
+ "serde_json",
+ "serverness",
+ "shell-words",
+ "tokio",
+ "uuid 1.16.0",
 ]
 
 [[package]]

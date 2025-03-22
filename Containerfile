@@ -11,13 +11,13 @@ RUN apt-get update && \
   apt-get install -y openssl libssl-dev gcc pkg-config
 RUN cargo chef cook --release --recipe-path recipe.json
 COPY . .
-RUN cargo build -p serverness-shell --release
+RUN cargo build -p shell --release
 
 FROM debian:bookworm-slim
 WORKDIR /app
 RUN apt-get update && \
   apt-get install -y --no-install-recommends openssl libssl-dev ca-certificates \
   && rm -rf /var/lib/apt/lists/*
-COPY --from=builder /app/target/release/serverness-shell .
+COPY --from=builder /app/target/release/shell .
 
-ENTRYPOINT [ "/app/serverness-shell" ]
+ENTRYPOINT [ "/app/shell" ]
