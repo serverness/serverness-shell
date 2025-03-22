@@ -251,10 +251,10 @@ pub fn create_context() -> EngineState {
             Input,
             InputList,
             InputListen,
-            // IsTerminal,
+            IsTerminal,
             // Kill,
             // Sleep,
-            // TermSize,
+            TermSize,
             // Whoami
         };
 
