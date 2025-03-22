@@ -14,10 +14,16 @@ COPY . .
 RUN cargo build -p shell --release
 
 FROM debian:bookworm-slim
+ARG USER=ness
+
 WORKDIR /app
 RUN apt-get update && \
   apt-get install -y --no-install-recommends openssl libssl-dev ca-certificates \
   && rm -rf /var/lib/apt/lists/*
+
 COPY --from=builder /app/target/release/shell .
+
+RUN adduser --disabled-password --gecos "" $USER
+USER $USER
 
 ENTRYPOINT [ "/app/shell" ]

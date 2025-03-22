@@ -54,3 +54,8 @@ newline-converter = "0.3.0"
 progenitor = { git = "https://github.com/serverness/progenitor.git", branch = "nushell", default-features = false }
 regex = "1.11.1"
 rustfmt-wrapper = "0.2.1"
+
+[profile.release]
+strip = true
+opt-level = "z"
+lto = true

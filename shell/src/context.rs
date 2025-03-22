@@ -154,7 +154,6 @@ pub fn create_context() -> EngineState {
         // Misc, from nu_command
         bind_command! {
             Source,
-            // Tutor, TODO(chvck): useful but we need to think about how this interacts with our tutorial
         };
 
         // Path, from nu_command
@@ -174,26 +173,26 @@ pub fn create_context() -> EngineState {
         // System, from nu_command
         bind_command! {
             Complete,
-            External,
+            // External,
             NuCheck,
             Sys,
         };
 
-        #[cfg(unix)]
-        bind_command! { Exec }
+        // #[cfg(unix)]
+        // bind_command! { Exec }
 
-        #[cfg(windows)]
-        bind_command! { RegistryQuery }
+        // #[cfg(windows)]
+        // bind_command! { RegistryQuery }
 
-        #[cfg(any(
-            target_os = "android",
-            target_os = "linux",
-            target_os = "macos",
-            target_os = "windows"
-        ))]
-        bind_command! { Ps };
+        //#[cfg(any(
+        //    target_os = "android",
+        //    target_os = "linux",
+        //    target_os = "macos",
+        //    target_os = "windows"
+        //))]
+        //bind_command! { Ps };
 
-        bind_command! { Which };
+        // bind_command! { Which };
 
         // Strings, from nu_command
         bind_command! {
@@ -229,17 +228,17 @@ pub fn create_context() -> EngineState {
 
         // FileSystem, from nu_command
         bind_command! {
-            Cd,
-            UCp,
-            Ls,
-            UMkdir,
-            UMv,
-            Open,
-            Rm,
-            Save,
+            // Cd,
+            // UCp,
+            // Ls,
+            // UMkdir,
+            // UMv,
+            // Open,
+            // Rm,
+            // Save,
             // Touch,
-            Glob,
-            Watch,
+            // Glob,
+            // Watch,
         };
 
         // Platform, from nu_command
@@ -248,15 +247,15 @@ pub fn create_context() -> EngineState {
             AnsiLink,
             AnsiStrip,
             Clear,
-            Du,
+            // Du,
             Input,
             InputList,
             InputListen,
-            IsTerminal,
-            Kill,
-            Sleep,
-            TermSize,
-            Whoami
+            // IsTerminal,
+            // Kill,
+            // Sleep,
+            // TermSize,
+            // Whoami
         };
 
         // Date, from nu_command
@@ -329,10 +328,10 @@ pub fn create_context() -> EngineState {
 
         // Env, from nu_command
         bind_command! {
-            ExportEnv,
-            LoadEnv,
-            SourceEnv,
-            WithEnv,
+            // ExportEnv,
+            // LoadEnv,
+            // SourceEnv,
+            // WithEnv,
             ConfigNu,
             ConfigEnv,
             ConfigMeta,
@@ -361,20 +360,20 @@ pub fn create_context() -> EngineState {
 
         // Network, from nu_command
         bind_command! {
-            Http,
-            HttpDelete,
-            HttpGet,
-            HttpHead,
-            HttpPatch,
-            HttpPost,
-            HttpPut,
-            HttpOptions,
-            Url,
-            UrlBuildQuery,
-            UrlEncode,
-            UrlJoin,
-            UrlParse,
-            Port,
+            // Http,
+            // HttpDelete,
+            // HttpGet,
+            // HttpHead,
+            // HttpPatch,
+            // HttpPost,
+            // HttpPut,
+            // HttpOptions,
+            // Url,
+            // UrlBuildQuery,
+            // UrlEncode,
+            // UrlJoin,
+            // UrlParse,
+            // Port,
         }
 
         // Random, from nu_command
@@ -406,11 +405,11 @@ pub fn create_context() -> EngineState {
 
         // Experimental
         bind_command! {
-            IsAdmin,
+            // IsAdmin,
         };
 
         // Bytes, from nu_command {
-        bind_command! {
+        /* bind_command! {
             Bytes,
             BytesAdd,
             BytesAt,
@@ -423,11 +422,11 @@ pub fn create_context() -> EngineState {
             BytesReplace,
             BytesReverse,
             BytesStartsWith
-        }
+        }*/
 
         //Debug, from nu_command
         bind_command! {
-            Ast,
+            // Ast,
             Debug,
             DebugInfo,
             DebugProfile,
